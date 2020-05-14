@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+  title: 'Jeremy',
+    date: 'June 23rd, 1984',
+    firstParagraph: `I am Jeremy.`,
+
+    secondParagraph: `Last name Faraone.`,
+
+    thirdParagraph: `From San Jose, CA.`
   }
 ];
 
@@ -99,64 +108,57 @@ const data = [
     <span class='expandButton'></span>
   </div>
 */
-function articleMaker(title, date, firstParagraph, secondParagraph, thirdParagraph){
- // new elements
+function articleMaker(title, date, par1, par2, par3){
+
+  // new elements
   const article = document.createElement('div')
   const header = document.createElement('h2')
   const pDate = document.createElement('p') 
   const p1 = document.createElement('p') 
   const p2 = document.createElement('p') 
   const p3 = document.createElement('p')
-  // const span = document.createElement('span')
-  const articleOpen = document.createElement('span')
-  const articleClose = document.createElement('span')
-
+  const span = document.createElement('span')
+  
 // append
   article.appendChild(header)
   article.appendChild(pDate)
   article.appendChild(p1)
   article.appendChild(p2)
   article.appendChild(p3)
-  // article.appendChild(span)
-  article.appendChild(articleOpen)
-  // article.appendChild(articleClose)
-
+  article.appendChild(span)
+ 
 // add classes
   article.classList.add('article')
   pDate.classList.add('date')
-  articleOpen.classList.add('expandButton')
-
-
+  p1.classList.add('content')
+  p2.classList.add('content')
+  p3.classList.add('content')
+  span.classList.add('expandButton')
+  
 // add data
   header.textContent = title
   pDate.textContent = date
-  p1.textContent = firstParagraph
-  p2.textContent = secondParagraph
-  p3.textContent = thirdParagraph
+  p1.textContent = par1
+  p2.textContent = par2
+  p3.textContent = par3
 
+  const close = '\u25b2';
+  const open = '\u25bc';
+  span.textContent = open
 
-const expand = document.querySelector('expandButton')
-expand.addEventListener('click', () => {
-  articleOpen.classList.toggle()
+  span.addEventListener('click', () => {
+   article.classList.toggle('article')
+   span.textContent = close
 })
-
 
   return article
 }
 
 const homeDiv = document.querySelector('.articles');
-
-data.forEach(element => {
-  homeDiv.appendChild(articleMaker(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph))
+data.forEach(content => {
+  homeDiv.appendChild(articleMaker(content.title, content.date, content.firstParagraph, content.secondParagraph, content.thirdParagraph))
 });
-// const testComponent = articleMaker('test title', 'test content')
-// const accordion = document.querySelector('articles')
-// accordion.appendChild(articleMaker)
 
-
-// data.forEach(data => {
-//   accordion.appendChild(articleMaker(data.title, data.content))
-// })
 /*
   Hint: You will need to use createElement more than once here!
 
