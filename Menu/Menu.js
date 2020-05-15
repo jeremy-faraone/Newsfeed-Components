@@ -29,7 +29,7 @@ function menuMaker(item){
 
   menu.classList.add('menu')
    
-  item.forEach(() => {
+  item.forEach((menuItems) => {
         const list = document.createElement('li')
         list.textContent = menuItems;
         menuList.appendChild(list);
@@ -44,7 +44,7 @@ function menuMaker(item){
   return menu
 }
 
-const menuDiv = document.querySelector('.header img')
+const menuDiv = document.querySelector('.header')
 
 menuDiv.appendChild(menuMaker(menuItems))
 
